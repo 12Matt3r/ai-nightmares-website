@@ -28,10 +28,8 @@ const connectWallet = async () => {
         account = accounts[0]
         document.getElementById('wallet').textContent = account;
 
+        // TODO: Add ABI and Address
         // contract = new web3.eth.Contract(ABI,ADDRESS);
-        // console.log(contract);
-        // getCount();
-        // getCount();
     }
 };
 
@@ -48,28 +46,9 @@ const getCount = async () => {
             
 document.getElementById("wallet").addEventListener("click", connectWallet, false);
 
-// document.getElementById("mint").onclick = () => {
-//     try{
-//     contract.methods.safeMint(account).send({from: account, value: "60000000000000000"});
-//     }
-//     catch(err){
-//         console.log(err);
-//     }
-// };
-
-
 function sendDataToSolidity(tokenURI){
-
-
-
-  // console.log(contract.methods);
-	
   if(contract){
-
-	 
 		try{
-      console.log("Minting NFT");
-      // console.log(jsonString);
 			contract.methods.mintForSelf(tokenURI).send({from: account, value: "60000000000000000"});
       showStatus("NFT minted!", 0);
 			}

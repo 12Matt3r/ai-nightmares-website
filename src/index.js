@@ -1,7 +1,6 @@
 
 
 import * as THREE from "three";
-// import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { Figure } from "./js/Figure";
 import { LightSource } from "./js/LightSource";
 import {
@@ -28,18 +27,15 @@ let renderer = new THREE.WebGLRenderer({
 });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor(0x121212,1);
-document.body.appendChild(renderer.domElement);
+document.getElementById('canvas-container').appendChild(renderer.domElement);
 window.addEventListener("resize", onResize, false);
 window.addEventListener("mousemove", onMouseMove);
-
-// new OrbitControls(camera, renderer.domElement);
 
 let light = new LightSource();
 light.position.set(2, 0, -10);
 scene.add(light);
 
 let figure = new Figure();
-// figure.rotateY(1);
 scene.add(figure);
 
 let composer = new EffectComposer(renderer);
@@ -73,12 +69,8 @@ function mapRange(number, inMin, inMax, outMin, outMax) {
 let clock = new THREE.Clock();
 
 renderer.setAnimationLoop(() => {
-  //renderer.render(scene, camera);
   let t = clock.getElapsedTime();
   light.userData.time.value = t;
-  // camera.position.x += Math.cos(t) * 0.01;
-  // camera.position.y += Math.sin(t * 0.6) * 0.01;
-
   composer.render();
 });
 
